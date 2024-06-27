@@ -99,7 +99,7 @@ export default function Quiz() {
                 )}
               />
               <div>
-                <QuestionPage form={form} />
+                <QuestionPage />
               </div>
               <div className='flex flex-row gap-2'>
                 <Button type='submit'>Submit</Button>
