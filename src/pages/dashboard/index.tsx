@@ -14,6 +14,7 @@ export default function Dashboard({ session, hello }: { session: Session | null;
           <Link className='bg-green-500 rounded-lg font-semibold px-2 py-1 text-zinc-50' href='/dashboard/quiz'>
             create quiz
           </Link>
+          list of quizzes
         </div>
       </Layout>
     </div>

@@ -1,21 +1,30 @@
 import { connectToDatabase } from "@/db";
+import { UserI } from "@/lib/dbHelper/models/User";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+import { QuizI } from "../../dashboard/quiz";
+import { authOptions } from "../auth/[...nextauth]";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
+      const session = await getServerSession(req, res, authOptions);
+      if (!session) return res.status(401).json({ message: "Unauthorized user" });
+
       const client = await connectToDatabase();
       const db = client.db("quixlardb");
 
-      const { title, description } = req.body;
+      const quiz: QuizI = req.body;
 
-      const userCollection = db.collection("users");
-      const quizCollection = db.collection("quizzes");
-      const result = await quizCollection.insertOne({ title, description });
-      //TODO: if quiz id already present (idempotency)
-      await userCollection.findOneAndUpdate({ email: "ovaiskhanday927@gmail.com" }, { $push: { quizzes: result.insertedId } });
+      const userCollection = db.collection<UserI>("users");
+      const quizCollection = db.collection<QuizI>("quizzes");
 
-      res.status(200).json({ message: "Data added successfully" });
+      const result = await quizCollection.insertOne(quiz);
+
+      await userCollection.findOneAndUpdate({ email: session?.user?.email! }, { $push: { quizzes: result.insertedId as unknown as ObjectId } });
+
+      res.status(201).json({ message: "Quiz created successfully" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error", error: error });
     }

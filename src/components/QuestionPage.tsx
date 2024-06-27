@@ -100,7 +100,7 @@ const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestio
           )}
         </div>
       ))}
-      <Button type='button' variant='outline' onClick={() => setIsDialogOpen(true)}>
+      <Button type='button' variant='outline' className='max-w-[100px] mx-auto float float-right mt-3 h-10' onClick={() => setIsDialogOpen(true)}>
         Add question
       </Button>
       <ChooseQuestionTypeDialog
@@ -108,7 +108,6 @@ const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestio
         onSelect={(qt: QuestionTypes) => selectQuestionTypeHandler(qt)}
         closeDialog={() => setIsDialogOpen(false)}
       />
-      <pre>{JSON.stringify(localQuestions, null, 2)}</pre>
     </div>
   );
 };
