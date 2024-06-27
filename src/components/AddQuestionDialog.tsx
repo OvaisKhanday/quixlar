@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "./ui/form";
+import { Input } from "./ui/input";
 
 export type QuestionType = "mcq-s" | "mcq-m" | "short" | "long";
 interface AddQuestionDialogProps {
@@ -12,8 +15,9 @@ interface AddQuestionDialogProps {
 }
 
 const AddQuestionDialog: FC<AddQuestionDialogProps> = ({ open, setOpen }) => {
-  const { setQuestions } = useContext(questionsContext);
+  const { questions, setQuestions } = useContext(questionsContext);
   const [questionType, setQuestionType] = useState<QuestionType>("mcq-s");
+  const form = useForm();
 
   function handleAdd() {
     setOpen(false);
@@ -67,11 +71,12 @@ const AddQuestionDialog: FC<AddQuestionDialogProps> = ({ open, setOpen }) => {
         break;
     }
   }
+  function onQuestionAdd() {}
   return (
     <Dialog open={open} onOpenChange={(_open) => setOpen(_open)}>
       <DialogContent className='sm:max-w-md'>
         <DialogHeader>
-          <DialogTitle>Select the question type</DialogTitle>
+          <DialogTitle>Add a Question</DialogTitle>
           <DialogDescription>Select among MCQ (single answer), MCQ (multiple answers), Short answer, Long answer type questions.</DialogDescription>
         </DialogHeader>
         <div>
@@ -95,8 +100,30 @@ const AddQuestionDialog: FC<AddQuestionDialogProps> = ({ open, setOpen }) => {
             </SelectContent>
           </Select>
         </div>
+        <div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onQuestionAdd)}>
+              <FormField
+                control={form.control}
+                name='question'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Question</FormLabel>
+                    <FormControl>
+                      <Input placeholder='what is the capital of India?' {...field} />
+                    </FormControl>
+                    <FormDescription>Enter the question here.</FormDescription>
+                  </FormItem>
+                )}
+              />
+              <div></div>
+            </form>
+          </Form>
+        </div>
         <DialogFooter>
-          <Button onClick={handleAdd}>add</Button>
+          <Button type='submit' onClick={handleAdd}>
+            add
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

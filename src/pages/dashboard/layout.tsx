@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Button variant={"outline"}>signout</Button>
         </div>
       </nav>
-      <div className='mt-4'>{children}</div>
+      <div className='mt-4 flex flex-col justify-center items-center'>{children}</div>
     </div>
   );
 }

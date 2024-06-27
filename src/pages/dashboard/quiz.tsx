@@ -1,15 +1,15 @@
-import AddQuestionDialog, { QuestionType } from "@/components/AddQuestionDialog";
+import { QuestionType } from "@/components/AddQuestionDialog";
+import QuestionPage from "@/components/QuestionPage";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { getServerSession } from "next-auth";
 import React, { createContext, useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
-import { v4 as uuidv4 } from "uuid";
-import QuestionPage from "@/components/QuestionPage";
+import { format } from "path";
 
 export type Question = {
   id: string;
@@ -43,6 +43,7 @@ function QuestionProvider({ children }: { children: React.ReactNode }) {
   const value = { questions, setQuestions };
   return <questionsContext.Provider value={value}>{children}</questionsContext.Provider>;
 }
+
 export default function Quiz() {
   async function handleSubmit() {
     const response = await fetch("/api/quiz/add", {
@@ -55,14 +56,19 @@ export default function Quiz() {
   }
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const form = useForm();
+  const form = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
 
-  function onSubmit() {}
+  function onSubmit(f: FieldValues) {
+    console.log(f);
+  }
   return (
     <Layout>
       <QuestionProvider>
-        <div className='px-4'>
-          <h1 className='font-semibold text-3xl'>Add a Quiz</h1>
+        <div className='px-4 max-w-lg'>
+          <h1 className='font-semibold text-2xl'>Add a Quiz</h1>
           <p>Add title and description to the quiz and select the type of question you want to add.</p>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -73,7 +79,7 @@ export default function Quiz() {
                   <FormItem>
                     <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input placeholder='Geography Test' {...field} />
+                      <Input placeholder='Geography Test' {...field} required />
                     </FormControl>
                     <FormDescription>Provide the title of the quiz.</FormDescription>
                   </FormItem>
@@ -93,17 +99,13 @@ export default function Quiz() {
                 )}
               />
               <div>
-                <QuestionPage />
+                <QuestionPage form={form} />
               </div>
               <div className='flex flex-row gap-2'>
                 <Button type='submit'>Submit</Button>
-                <Button type='button' variant='outline' onClick={() => setIsDialogOpen(true)}>
-                  add question
-                </Button>
               </div>
             </form>
           </Form>
-          <AddQuestionDialog open={isDialogOpen} setOpen={setIsDialogOpen} />
         </div>
         <Log />
       </QuestionProvider>
