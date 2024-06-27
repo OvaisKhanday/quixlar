@@ -1,14 +1,15 @@
-import { questionsContext } from "@/pages/dashboard/quiz";
 import { CrossCircledIcon } from "@radix-ui/react-icons";
-import { FC, useContext, useState } from "react";
-import { FieldValues, UseFormReturn } from "react-hook-form";
+import { FC, useState } from "react";
 import { v4 } from "uuid";
 import ChooseQuestionTypeDialog from "./ChooseQuestionTypeDialog";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Input, InputProps } from "./ui/input";
 
-interface QuestionProps {}
+interface QuestionProps {
+  questions: QuestionType[];
+  setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+}
 
 export type QuestionType = {
   type: QuestionTypes;
@@ -28,9 +29,7 @@ type Descriptive = {
 };
 export type QuestionTypes = "mcq" | "descriptive";
 
-const QuestionPage: FC<QuestionProps> = () => {
-  const { questions } = useContext(questionsContext);
-  const [localQuestions, setLocalQuestions] = useState<QuestionType[]>([]);
+const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestions: setLocalQuestions }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   function selectQuestionTypeHandler(questionType: QuestionTypes) {
     if (questionType === "mcq") setLocalQuestions((prev) => [...prev, getMCQQuestion()]);
