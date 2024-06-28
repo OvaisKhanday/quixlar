@@ -1,11 +1,14 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { QuizI } from "../dashboard/quiz";
+import AskForUserNameDialog from "@/components/AskForUserNameDialog";
+import { useState } from "react";
 
 interface TakeQuiz {
   quiz: QuizI;
 }
 export default function TakeQuiz({ quiz }: TakeQuiz) {
+  const [isNameDialogOpen, setIsNameDialogOpen] = useState(true);
   // ask for name - via a dialog
   // generate a token for user
   // start quiz
@@ -14,7 +17,14 @@ export default function TakeQuiz({ quiz }: TakeQuiz) {
   // display the results
   // check if the user with same token is making another submit - idempotent
 
-  return <pre>{JSON.stringify(quiz, null, 2)}</pre>;
+  function nameHandler(name: string) {
+    setIsNameDialogOpen(false);
+  }
+  return (
+    <div>
+      <AskForUserNameDialog isOpen={isNameDialogOpen} onName={nameHandler} />
+    </div>
+  );
 }
 
 export async function getServerSideProps(context: any) {
