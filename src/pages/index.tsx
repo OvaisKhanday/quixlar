@@ -45,7 +45,7 @@ export default function Home() {
           Designed and Developed by{" "}
           <a href='https://khandayovais.co' target='_blank'>
             <Button variant={"link"} className='underline'>
-              Ovais Ahamd Khanday
+              Ovais Ahmad Khanday
             </Button>
           </a>{" "}
           with ❤️
