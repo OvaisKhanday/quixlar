@@ -32,8 +32,9 @@ const Quizzes: FC<QuizzesProps> = ({ quizzes }) => {
         <TableHeader>
           <TableRow>
             <TableHead className='w-[50px]'>Serial</TableHead>
-            <TableHead>Title</TableHead>
             <TableHead className='w-[100px]'>Date</TableHead>
+            <TableHead>Title</TableHead>
+            <TableHead className='w-[100px]'>Participants</TableHead>
             <TableHead className='w-[50px]'>Share</TableHead>
             <TableHead className='w-[50px]'>Delete</TableHead>
           </TableRow>
@@ -42,15 +43,16 @@ const Quizzes: FC<QuizzesProps> = ({ quizzes }) => {
         <TableBody>
           {quizzes.map((quiz, idx) => (
             <TableRow key={quiz._id?.toString()}>
-              <TableCell>{idx + 1}</TableCell>
+              <TableCell className='text-center'>{idx + 1}</TableCell>
+              <TableCell className=''>{new Date(quiz.timestamp).toLocaleDateString()}</TableCell>
               <TableCell className='truncate'>{quiz.title}</TableCell>
-              <TableCell>{new Date(quiz.timestamp).toLocaleDateString()}</TableCell>
-              <TableCell>
+              <TableCell className='text-center '>{quiz.participants.length}</TableCell>
+              <TableCell className=''>
                 <Button onClick={() => shareId(quiz._id!)}>
                   <Share1Icon />
                 </Button>
               </TableCell>
-              <TableCell className='flex items-center justify-center'>
+              <TableCell className=''>
                 <Button variant='outline' onClick={() => onDeleteHandler(quiz._id!)}>
                   <Cross2Icon />
                 </Button>
