@@ -41,6 +41,7 @@ export async function getServerSideProps(context: any) {
   async function getQuizzes(): Promise<QuizI[]> {
     try {
       const session = await getServerSession(context.req, context.res, authOptions);
+      if (!session) throw new Error("user not found");
       const resp = await fetch("http://localhost:3000/api/quiz/get", {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
