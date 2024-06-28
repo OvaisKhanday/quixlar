@@ -12,7 +12,7 @@ interface DashboardCardsProps {
 
 const DashboardCards: FC<DashboardCardsProps> = ({ quizzesCount, totalParticipants, successRate }) => {
   return (
-    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 '>
+    <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 '>
       <Card className='text-center'>
         <CardHeader>
           <CardTitle>Total quizzes</CardTitle>
@@ -25,7 +25,7 @@ const DashboardCards: FC<DashboardCardsProps> = ({ quizzesCount, totalParticipan
       <Card className='text-center'>
         <CardHeader>
           <CardTitle>Total Participation</CardTitle>
-          <CardDescription>The total number of users, who took quizzes</CardDescription>
+          <CardDescription>The total number of times quizzes were taken</CardDescription>
         </CardHeader>
         <CardContent className='text-2xl'>
           <h1>{totalParticipants}</h1>

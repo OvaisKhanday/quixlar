@@ -100,7 +100,7 @@ const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestio
           )}
         </div>
       ))}
-      <Button type='button' variant='outline' className='max-w-[100px] mx-auto float float-right mt-3 h-10' onClick={() => setIsDialogOpen(true)}>
+      <Button type='button' variant='outline' className='mx-auto flex justify-center' onClick={() => setIsDialogOpen(true)}>
         Add question
       </Button>
       <ChooseQuestionTypeDialog

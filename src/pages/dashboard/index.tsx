@@ -54,14 +54,27 @@ export async function getServerSideProps(context: any) {
   }
 
   const quizzes = await getQuizzes();
+  const totalParticipants = quizzes.reduce((acc, q) => acc + q.participants.length, 0);
+  const totalQuestions = quizzes.reduce((acc, q) => acc + q.questions.length, 0);
+  let totalAchievableScore = 0;
+  let achievedScore = 0;
+
+  for (const _q of quizzes) {
+    const participants = _q.participants;
+    totalAchievableScore += _q.questions.length * participants.length;
+    achievedScore += participants.reduce((acc, _p) => acc + _p.totalCorrect, 0);
+  }
+
+  const successRate = Math.floor((achievedScore / totalAchievableScore) * 100);
 
   return {
     props: {
       session: session,
       quizzes: quizzes,
       quizzesCount: quizzes.length,
-      totalParticipants: 47,
-      successRate: 67,
+      totalParticipants,
+      totalQuestions,
+      successRate,
     },
   };
 }
