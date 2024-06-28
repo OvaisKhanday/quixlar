@@ -1,13 +1,9 @@
+import DashboardCards from "@/components/DashboardCards";
 import Quizzes from "@/components/Quizzes";
 import { getServerSession, Session } from "next-auth";
-import Link from "next/link";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
 import { QuizI } from "./quiz";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
-import DashboardCards from "@/components/DashboardCards";
 
 interface DashboardProps {
   session: Session | null;
@@ -18,8 +14,6 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ session, quizzes, quizzesCount, totalParticipants, successRate }: DashboardProps) {
-  //   const { data: session } = useSession();
-  console.log(session);
   return (
     <div>
       <Layout>

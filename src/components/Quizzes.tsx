@@ -1,11 +1,11 @@
 import { QuizI } from "@/pages/dashboard/quiz";
 import { Cross2Icon, Share1Icon } from "@radix-ui/react-icons";
-import { FC, useState } from "react";
-import { Button } from "./ui/button";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { ObjectId } from "mongodb";
+import { FC, useState } from "react";
 import ConfirmDeleteQuiz from "./ConfirmDeleteQuiz";
 import ShareQuizIdDialog from "./ShareQuizIdDialog";
+import { Button } from "./ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 
 interface QuizzesProps {
   quizzes: QuizI[];
