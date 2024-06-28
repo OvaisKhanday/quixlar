@@ -3,12 +3,16 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import { QuizI } from "../dashboard/quiz";
 import AskForUserNameDialog from "@/components/AskForUserNameDialog";
 import { useState } from "react";
+import QuizQuestionExam from "@/components/QuizQuestionExam";
+import { DialogDescription } from "@/components/ui/dialog";
 
 interface TakeQuiz {
   quiz: QuizI;
 }
 export default function TakeQuiz({ quiz }: TakeQuiz) {
   const [isNameDialogOpen, setIsNameDialogOpen] = useState(true);
+  const [showQuiz, setShowQuiz] = useState<boolean>(false);
+  const [userName, setUserName] = useState<string>("");
   // ask for name - via a dialog
   // generate a token for user
   // start quiz
@@ -19,10 +23,13 @@ export default function TakeQuiz({ quiz }: TakeQuiz) {
 
   function nameHandler(name: string) {
     setIsNameDialogOpen(false);
+    setUserName(name);
+    setShowQuiz(true);
   }
   return (
-    <div>
+    <div className='mt-10 '>
       <AskForUserNameDialog isOpen={isNameDialogOpen} onName={nameHandler} />
+      {showQuiz && <QuizQuestionExam quiz={quiz} userName={userName} />}
     </div>
   );
 }
@@ -46,6 +53,7 @@ export async function getServerSideProps(context: any) {
   }
 
   const quiz = await getQuiz(quizId);
+  //TODO: filter answers
 
   return {
     props: {

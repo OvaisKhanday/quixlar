@@ -23,17 +23,15 @@ const AskForUserNameDialog: FC<AskForUserNameDialogProps> = ({ isOpen, onName })
           <DialogTitle>Enter you name</DialogTitle>
           <DialogDescription>This name will identify you for the admin of the quiz</DialogDescription>
         </DialogHeader>
-        <form>
-          <div>
-            <Input placeholder='Ovais Ahmad Khanday' value={name} onChange={(e) => setName(e.target.value)} required minLength={5} />
-            <DialogDescription>Name should be at least 5 characters long</DialogDescription>
-          </div>
-          <DialogFooter>
-            <Button type='submit' onSubmit={submitHandler}>
-              Submit
-            </Button>
-          </DialogFooter>
-        </form>
+        <div>
+          <Input placeholder='Ovais Ahmad Khanday' value={name} onChange={(e) => setName(e.target.value)} required minLength={5} />
+          <DialogDescription>Name should be at least 5 characters long</DialogDescription>
+        </div>
+        <DialogFooter>
+          <Button type='submit' onClick={submitHandler}>
+            Submit
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

@@ -1,0 +1,184 @@
+import { QuizI } from "@/pages/dashboard/quiz";
+import { FC, useEffect, useState } from "react";
+import { Descriptive, MCQ, QuestionType, QuestionTypes } from "./QuestionPage";
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Participant } from "../pages/dashboard/quiz";
+import { Description } from "@radix-ui/react-dialog";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Card, CardContent } from "./ui/card";
+import { Progress } from "./ui/progress";
+import AppLogo from "./AppLogo";
+
+interface QuizQuestionExamProps {
+  quiz: QuizI;
+  userName: string;
+}
+
+export type Answers = {
+  [questionId: string]: boolean[] | string;
+};
+
+const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
+  const { toast } = useToast();
+  const router = useRouter();
+  const [score, setScore] = useState({
+    show: false,
+    totalQuestion: 0,
+    totalCorrect: 0,
+  });
+
+  const [answers, setAnswers] = useState<Answers>(() => {
+    const initialAnswers: Answers = {};
+    for (const q of quiz.questions) {
+      initialAnswers[q.id] = q.type === "mcq" ? [false, false, false, false] : "";
+    }
+    return initialAnswers;
+  });
+
+  async function submitHandler() {
+    try {
+      //TODO: change url
+      const resp = await fetch("http://localhost:3000/api/quiz/submit", {
+        method: "POST",
+        body: JSON.stringify({
+          name: userName,
+          answers,
+          quizId: quiz._id,
+        }),
+      });
+      const { totalQuestion, totalCorrect } = await resp.json();
+      setScore({
+        show: true,
+        totalCorrect,
+        totalQuestion,
+      });
+
+      //TODO: hide question and show result
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "cannot save, there occurred an error while saving the user response",
+        variant: "destructive",
+      });
+    }
+  }
+
+  function changeChecked(questionId: string, idx: number, checked: boolean) {
+    const answer = answers[questionId] as boolean[];
+    answer[idx] = checked;
+    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
+  }
+
+  function changeAnswerText(questionId: string, newText: string) {
+    setAnswers((prev) => ({ ...prev, [questionId]: newText }));
+  }
+
+  return (
+    <div className='max-w-3xl mx-auto my-2 p-4'>
+      <QuizHeader quiz={quiz} userName={userName} />
+      {!score.show ? (
+        quiz.questions.map((q) => (
+          <div key={q.id} className='outline outline-2 outline-primary/20 rounded-lg p-2 mb-8'>
+            {q.type === "mcq" ? (
+              <TakeMCQ question={q} answer={answers[q.id] as boolean[]} changeChecked={changeChecked} />
+            ) : (
+              <TakeDescriptive question={q} answer={answers[q.id] as string} changeAnswerText={changeAnswerText} />
+            )}
+          </div>
+        ))
+      ) : (
+        <Score totalCorrect={score.totalCorrect} totalQuestion={score.totalQuestion} />
+      )}
+      {score.show ? (
+        <Button className='mx-auto block mt-10' onClick={() => router.refresh()}>
+          Take Again
+        </Button>
+      ) : (
+        <Button onClick={submitHandler}>Submit</Button>
+      )}
+    </div>
+  );
+};
+
+function QuizHeader({ quiz, userName }: QuizQuestionExamProps) {
+  return (
+    <div className='text-left mb-10'>
+      <AppLogo />
+      <h1 className='text-xl '>{`Quiz: ${quiz.title}`}</h1>
+      <p className='text-primary/60'>{quiz.description}</p>
+    </div>
+  );
+}
+
+function Score({ totalCorrect, totalQuestion }: { totalCorrect: number; totalQuestion: number }) {
+  return (
+    <div className=' mx-auto p-8 rounded-full outline shadow-md text-center h-36 w-36 flex flex-col justify-center items-center'>
+      <p className='text-xl'>
+        <span className='text-2xl font-bold'>{totalCorrect.toPrecision(2)}</span>
+        {" / "}
+        <span>{totalQuestion}</span>
+      </p>
+      <Progress value={(totalCorrect / totalQuestion) * 100} />
+    </div>
+  );
+}
+export default QuizQuestionExam;
+
+function TakeMCQ({
+  question,
+  answer,
+  changeChecked,
+}: {
+  question: QuestionType & MCQ;
+  answer: boolean[];
+  changeChecked: (_questionId: string, _idx: number, _checked: boolean) => void;
+}) {
+  return (
+    <>
+      <Question title={question.question} />
+      <div className='grid grid-cols-2 gap-2'>
+        {question.options.map((op, idx) => (
+          <div
+            key={`
+                ${question.id}-${idx}`}
+            className='outline outline-1 outline-primary/10 rounded-lg flex flex-row gap-4 items-center p-2'
+          >
+            <Checkbox checked={answer[idx]} onCheckedChange={(checked: boolean) => changeChecked(question.id, idx, checked)} />
+            <p>{op}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+function TakeDescriptive({
+  question,
+  answer,
+  changeAnswerText,
+}: {
+  question: QuestionType & Descriptive;
+  answer: string;
+  changeAnswerText: (_questionId: string, _newText: string) => void;
+}) {
+  return (
+    <>
+      <Question title={question.question} />
+      <Input
+        required
+        placeholder='enter your answer here'
+        className='h-12'
+        value={answer}
+        onChange={(e) => changeAnswerText(question.id, e.target.value)}
+      />
+    </>
+  );
+}
+
+function Question({ title }: { title: string }) {
+  return <h3 className='text-md outline outline-1 outline-primary/30 p-2 mb-6 rounded-lg text-wrap'>{title}</h3>;
+}

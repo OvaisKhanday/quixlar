@@ -24,7 +24,7 @@ const DashboardCards: FC<DashboardCardsProps> = ({ quizzesCount, totalParticipan
       </Card>
       <Card className='text-center'>
         <CardHeader>
-          <CardTitle>Total Participants</CardTitle>
+          <CardTitle>Total Participation</CardTitle>
           <CardDescription>The total number of users, who took quizzes</CardDescription>
         </CardHeader>
         <CardContent className='text-2xl'>

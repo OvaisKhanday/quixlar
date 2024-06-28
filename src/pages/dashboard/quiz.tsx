@@ -10,12 +10,21 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
 import { useRouter } from "next/navigation";
 import { ObjectId } from "mongodb";
+import { Answers } from "@/components/QuizQuestionExam";
 
 export interface QuizI {
   _id?: ObjectId;
   title: string;
   description?: string;
   questions: QuestionType[];
+  timestamp: Date;
+  participants: Participant[];
+}
+export interface Participant {
+  _id?: ObjectId;
+  name: string;
+  answers: Answers;
+  totalCorrect: number;
   timestamp: Date;
 }
 async function saveQuizToDatabase(quiz: QuizI) {
@@ -50,6 +59,7 @@ export default function Quiz() {
       description: f.description,
       questions: questions,
       timestamp: new Date(),
+      participants: [],
     };
     await saveQuizToDatabase(newQuiz);
     router.replace("/dashboard");

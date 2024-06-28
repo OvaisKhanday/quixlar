@@ -11,18 +11,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const session = await getServerSession(req, res, authOptions);
       if (!session) return res.status(401).json({ message: "Unauthorized user" });
+
       const client = await connectToDatabase();
       const db = client.db("quixlardb");
 
       const quiz: QuizI = req.body;
+      //TODO: const quiz: QuizI = JSON.parse(req.body);
 
       const userCollection = db.collection<UserI>("users");
       const quizCollection = db.collection<QuizI>("quizzes");
 
       const result = await quizCollection.insertOne(quiz);
 
-      await userCollection.findOneAndUpdate({ email: session?.user?.email! }, { $push: { quizzes: new ObjectId(result.insertedId) } });
-      await client.close();
+      await userCollection.findOneAndUpdate({ email: session?.user?.email! }, { $push: { quizzes: result.insertedId as unknown as ObjectId } });
 
       res.status(201).json({ message: "Quiz created successfully" });
     } catch (error) {

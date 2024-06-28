@@ -17,13 +17,13 @@ export type QuestionType = {
   question: string;
 } & (MCQ | Descriptive);
 
-type MCQ = {
+export type MCQ = {
   type: "mcq";
   options: string[];
   correct: boolean[];
 };
 
-type Descriptive = {
+export type Descriptive = {
   type: "descriptive";
   correct: string;
 };
