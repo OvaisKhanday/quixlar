@@ -11,10 +11,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className='flex flex-row gap-2 items-center '>
           <Image src={session?.user?.image!} alt='profile' className='rounded-full' height={32} width={32} />
           <p className='truncate'>{session?.user?.name}</p>
-          <Button variant={"outline"}>signout</Button>
+          <Button variant={"outline"} onClick={() => signOut()}>
+            signout
+          </Button>
         </div>
       </nav>
-      <div className='mt-4 flex flex-col justify-center items-center'>{children}</div>
+      {children}
     </div>
   );
 }

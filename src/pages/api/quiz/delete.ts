@@ -14,17 +14,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const client = await connectToDatabase();
       const db = client.db("quixlardb");
 
-      const quiz: QuizI = req.body;
+      const { quizId } = JSON.parse(req.body);
 
       const userCollection = db.collection<UserI>("users");
       const quizCollection = db.collection<QuizI>("quizzes");
 
-      const result = await quizCollection.insertOne(quiz);
+      await quizCollection.deleteOne({ _id: new ObjectId(quizId) });
 
-      await userCollection.findOneAndUpdate({ email: session?.user?.email! }, { $push: { quizzes: new ObjectId(result.insertedId) } });
+      await userCollection.findOneAndUpdate({ email: session?.user?.email! }, { $pull: { quizzes: new ObjectId(quizId) } });
+
       await client.close();
 
-      res.status(201).json({ message: "Quiz created successfully" });
+      res.status(200).json({ message: "Quiz deleted successfully" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error", error: error });
     }

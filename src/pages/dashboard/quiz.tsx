@@ -9,9 +9,10 @@ import { FieldValues, useForm } from "react-hook-form";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
 import { useRouter } from "next/navigation";
+import { ObjectId } from "mongodb";
 
 export interface QuizI {
-  _id?: string;
+  _id?: ObjectId;
   title: string;
   description?: string;
   questions: QuestionType[];
@@ -55,7 +56,7 @@ export default function Quiz() {
   }
   return (
     <Layout>
-      <div className='px-4 max-w-lg'>
+      <div className='px-4 max-w-4xl mx-auto my-2'>
         <h1 className='font-semibold text-2xl text-center'>Add a Quiz</h1>
         <p className='mb-10 text-center'>Add title and description to the quiz and select the type of question you want to add.</p>
         <Form {...form}>
@@ -99,7 +100,6 @@ export default function Quiz() {
 
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
-  console.log("ssp", session);
   if (!session) {
     return {
       redirect: {
