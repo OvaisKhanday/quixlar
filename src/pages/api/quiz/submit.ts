@@ -18,13 +18,11 @@ function getTotalCorrectAnswers(questions: QuestionType[], answers: Answers): nu
   return totalCorrect;
 }
 
-function getScore(correct: boolean[], userInput: boolean[]) {
-  const totalCorrect = correct.filter((b) => b).length;
-  let totalUserCorrect = 0;
+function getScore(correct: boolean[], userInput: boolean[]): number {
   for (let i = 0; i < Math.min(correct.length, userInput.length); i++) {
-    if (correct[i] && correct[i] === userInput[i]) totalUserCorrect++;
+    if (correct[i] != userInput[i]) return 0;
   }
-  return totalUserCorrect / totalCorrect;
+  return 1;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

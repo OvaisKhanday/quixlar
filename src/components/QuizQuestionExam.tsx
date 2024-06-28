@@ -83,7 +83,7 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
       <QuizHeader quiz={quiz} userName={userName} />
       {!score.show ? (
         quiz.questions.map((q) => (
-          <div key={q.id} className='outline outline-2 outline-primary/20 rounded-lg p-2 mb-8'>
+          <div key={q.id} className='outline outline-1 outline-primary/20 rounded-lg p-2 mb-12 shadow-md'>
             {q.type === "mcq" ? (
               <TakeMCQ question={q} answer={answers[q.id] as boolean[]} changeChecked={changeChecked} />
             ) : (
@@ -108,9 +108,17 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
 function QuizHeader({ quiz, userName }: QuizQuestionExamProps) {
   return (
     <div className='text-left mb-10'>
-      <AppLogo />
-      <h1 className='text-xl '>{`Quiz: ${quiz.title}`}</h1>
-      <p className='text-primary/60'>{quiz.description}</p>
+      <AppLogo className='text-center text-4xl lg:text-6xl' />
+      <h1 className='text-xl text-primary/60 font-semibold text-center mt-10 '>
+        Quiz: <span className='text-primary'>{quiz.title}</span>
+      </h1>
+      <p className='text-primary/60 text-center'>Description: {quiz.description}</p>
+      <p className='tracking-tight mt-5 text-center text-primary/70'>
+        Welcome <span className='font-semibold'>{userName}</span>. There are two type of questions (MCQs and Descriptive). MCQs can have more than one
+        options as their correct answer. Correct MCQ will be the one, for which you <span className='font-semibold'>select all that may apply</span>.
+        If any field is not selected, the score is 0. Descriptive questions require to type the exact answer. Answer is{" "}
+        <span className='font-semibold'>case insensitive</span>
+      </p>
     </div>
   );
 }
@@ -180,5 +188,5 @@ function TakeDescriptive({
 }
 
 function Question({ title }: { title: string }) {
-  return <h3 className='text-md outline outline-1 outline-primary/30 p-2 mb-6 rounded-lg text-wrap'>{title}</h3>;
+  return <h3 className='text-md  outline-1 outline-primary/30 p-2 mb-6 rounded-lg text-wrap'>{title}</h3>;
 }
