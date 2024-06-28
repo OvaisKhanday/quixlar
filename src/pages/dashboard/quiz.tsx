@@ -66,7 +66,7 @@ export default function Quiz() {
   }
   return (
     <Layout>
-      <div className='px-4 max-w-4xl mx-auto my-2'>
+      <div className='px-4 max-w-4xl mx-auto mt-8'>
         <h1 className='font-semibold text-2xl text-center'>Add a Quiz</h1>
         <p className='mb-10 text-center'>Add title and description to the quiz and select the type of question you want to add.</p>
         <Form {...form}>
