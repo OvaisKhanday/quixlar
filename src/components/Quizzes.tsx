@@ -1,4 +1,4 @@
-import { QuizI } from "@/pages/dashboard/quiz";
+import { QuizI } from "@/pages/dashboard/newQuiz";
 import { Cross2Icon, Share1Icon } from "@radix-ui/react-icons";
 import { ObjectId } from "mongodb";
 import { FC, useState } from "react";

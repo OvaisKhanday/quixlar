@@ -3,7 +3,7 @@ import Quizzes from "@/components/Quizzes";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
-import { QuizI } from "./quiz";
+import { QuizI } from "./newQuiz";
 
 interface DashboardProps {
   session: Session | null;

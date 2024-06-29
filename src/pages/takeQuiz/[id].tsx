@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { QuizI } from "../dashboard/quiz";
+import { QuizI } from "../dashboard/newQuiz";
 import AskForUserNameDialog from "@/components/AskForUserNameDialog";
 import { useState } from "react";
 import QuizQuestionExam from "@/components/QuizQuestionExam";

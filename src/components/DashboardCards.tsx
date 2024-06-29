@@ -47,7 +47,7 @@ const DashboardCards: FC<DashboardCardsProps> = ({ quizzesCount, totalParticipan
           <CardDescription>Create a new quiz</CardDescription>
         </CardHeader>
         <CardContent className='text-center'>
-          <Link href={"/dashboard/quiz"}>
+          <Link href={"/dashboard/newQuiz"}>
             <Button>Create</Button>
           </Link>
         </CardContent>

@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/db";
 import { UserI } from "@/lib/dbHelper/models/User";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import { QuizI } from "../../dashboard/quiz";
+import { QuizI } from "../../dashboard/newQuiz";
 import { authOptions } from "../auth/[...nextauth]";
 import { ObjectId } from "mongodb";
 

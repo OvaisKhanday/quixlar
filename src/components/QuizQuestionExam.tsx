@@ -1,11 +1,11 @@
-import { QuizI } from "@/pages/dashboard/quiz";
+import { QuizI } from "@/pages/dashboard/newQuiz";
 import { FC, useEffect, useState } from "react";
 import { Descriptive, MCQ, QuestionType, QuestionTypes } from "./QuestionPage";
 import { Checkbox } from "./ui/checkbox";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Participant } from "../pages/dashboard/quiz";
+import { Participant } from "../pages/dashboard/newQuiz";
 import { Description } from "@radix-ui/react-dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";

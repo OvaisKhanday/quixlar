@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { connectToDatabase } from "@/db";
 import { UserI } from "@/lib/dbHelper/models/User";
-import { QuizI } from "@/pages/dashboard/quiz";
+import { QuizI } from "@/pages/dashboard/newQuiz";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
