@@ -37,8 +37,8 @@ const DashboardCards: FC<DashboardCardsProps> = ({ quizzesCount, totalParticipan
           <CardDescription>Percentage of questions correctly answered by the participants</CardDescription>
         </CardHeader>
         <CardContent className='text-center flex flex-row items-center justify-center gap-2'>
-          <p className='text-primary/70'>{`${successRate % 100}%`}</p>
-          <Progress value={successRate % 100} className='h-4' />
+          <p className='text-primary/70'>{`${successRate}%`}</p>
+          <Progress value={successRate} className='h-4' />
         </CardContent>
       </Card>
       <Card className='text-center bg-accent'>
