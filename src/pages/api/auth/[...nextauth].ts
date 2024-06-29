@@ -14,12 +14,17 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      const client = await connectToDatabase();
-      const db = client.db("quixlardb");
-      const usersCollection = db.collection("users");
-      const dbUser = await usersCollection.findOne({ email: user.email });
-      if (!dbUser) await usersCollection.insertOne({ ...user, quizzes: [] });
-      return true;
+      try {
+        const client = await connectToDatabase();
+        const db = client.db("quixlardb");
+        const usersCollection = db.collection("users");
+        const dbUser = await usersCollection.findOne({ email: user.email });
+        if (!dbUser) await usersCollection.insertOne({ ...user, quizzes: [] });
+        client.close();
+        return true;
+      } catch (error) {
+        return false;
+      }
     },
   },
 };
