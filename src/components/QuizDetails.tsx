@@ -29,7 +29,7 @@ const QuizDetails: FC<QuizDetailsProps> = ({ title, description, quizId, ...prop
   return (
     <Card className='text-center dark' {...props}>
       <CardHeader>
-        <CardTitle className='tracking-wide whitespace-break-spaces'>{title}</CardTitle>
+        <CardTitle className='tracking-wide'>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className=' flex justify-center items-center gap-4'>

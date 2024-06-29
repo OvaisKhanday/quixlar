@@ -13,12 +13,14 @@ export default function Home() {
     <main className='px-10 lg:px-5 py-4 md:py-10 max-w-7xl mx-auto'>
       <AppLogo className='text-5xl lg:text-6xl text-center' />
       <h4 className='text-center font-semibold text-primary/65'>The ultimate online quiz platform</h4>
-      <div className='flex flex-col lg:flex-row gap-6 lg:gap-12 justify-center mt-10 items-center text-center'>
+
+      <div className='flex flex-col gap-6 lg:gap-12 justify-center mt-10 items-center text-center'>
         <div className='text-primary/60  leading-7 text-lg'>
           <p>
-            Introducing Quixlar, the ultimate online quiz platform designed to make quiz creation and participation a breeze! Whether you’re an
-            educator, trainer, or just someone who loves to test knowledge, Quixlar offers a seamless experience for both quiz makers and takers. With
-            Quixlar, admins can effortlessly create engaging quizzes on any topic and share them instantly through a simple link.
+            Introducing Quixlar, <span className='text-primary-foreground bg-primary/70 p-1 rounded-sm'>the ultimate online quiz platform</span>{" "}
+            designed to make quiz creation and participation a breeze! Whether you’re an educator, trainer, or just someone who loves to test
+            knowledge, Quixlar offers a seamless experience for both quiz makers and takers. With Quixlar, admins can effortlessly create engaging
+            quizzes on any topic and share them instantly through a simple link.
           </p>
 
           <p>
@@ -35,13 +37,12 @@ export default function Home() {
         </div>
         <video
           src='/Intro-1.m4v'
-          className='shadow-xl md:rotate-2 outline outline-4 rounded-md outline-primary/30'
-          width={600}
+          className='border-none shadow-xl mx-auto outline outline-8  rounded-md outline-primary/10'
+          width={800}
           controls
           autoPlay
           muted
         />
-
         {/* <Image src={"/quiz-take.png"} className='shadow-xl rounded-lg md:rotate-12' alt='picture of quiz' width={450} height={670} /> */}
       </div>
       <div className='flex flex-col lg:flex-row gap-6 lg:gap-16 justify-center mt-10 items-center text-center'>
