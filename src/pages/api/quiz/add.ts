@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const db = client.db("quixlardb");
 
       const quiz: QuizI = req.body;
-      //TODO: const quiz: QuizI = JSON.parse(req.body);
 
       const userCollection = db.collection<UserI>("users");
       const quizCollection = db.collection<QuizI>("quizzes");

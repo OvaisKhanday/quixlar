@@ -11,6 +11,7 @@ import Layout from "./layout";
 import { useRouter } from "next/navigation";
 import { ObjectId } from "mongodb";
 import { Answers } from "@/components/QuizQuestionExam";
+import { useToast } from "@/components/ui/use-toast";
 
 export interface QuizI {
   _id?: ObjectId;
@@ -27,31 +28,35 @@ export interface Participant {
   totalCorrect: number;
   timestamp: Date;
 }
-async function saveQuizToDatabase(quiz: QuizI) {
-  try {
-    const response = await fetch("/api/quiz/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(quiz),
-    });
-    if (response.status >= 300) throw new Error("an error occurred");
-    console.log("before redirect");
-    // redirect("/dashboard");
-  } catch (error) {
-    console.log(error);
-    //TODO: Show toast
-  }
-}
+
 export default function Quiz() {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
+
+  async function saveQuizToDatabase(quiz: QuizI) {
+    try {
+      const response = await fetch("/api/quiz/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(quiz),
+      });
+      if (response.status >= 300) throw new Error("an error occurred");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Something went wrong",
+        description: `The quiz with title "${quiz.title}" was not added`,
+      });
+    }
+  }
 
   async function onSubmit(f: FieldValues) {
     const newQuiz: QuizI = {

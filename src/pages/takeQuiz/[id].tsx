@@ -38,10 +38,7 @@ export async function getServerSideProps(context: any) {
   const quizId = context.params.id;
   async function getQuiz(quizId: string): Promise<QuizI | null> {
     try {
-      const session = await getServerSession(context.req, context.res, authOptions);
-      if (!session) throw new Error("user not found");
-
-      const resp = await fetch("http://localhost:3000/api/quiz/getQuiz", {
+      const resp = await fetch(`${process.env.URL}/api/quiz/getQuiz`, {
         method: "POST",
         body: JSON.stringify({ quizId }),
       });
@@ -54,6 +51,12 @@ export async function getServerSideProps(context: any) {
 
   const quiz = await getQuiz(quizId);
   //TODO: filter answers
+  if (!quiz)
+    return {
+      redirect: {
+        destination: "/takeQuiz/404",
+      },
+    };
 
   return {
     props: {

@@ -26,8 +26,7 @@ const ConfirmDeleteQuiz: FC<ConfirmDeleteQuizProps> = ({ isOpen, onClose, quizId
   const { toast } = useToast();
   async function deleteQuiz(quizId: ObjectId) {
     try {
-      //TODO: replace url
-      await fetch("http://localhost:3000/api/quiz/delete", {
+      await fetch("/api/quiz/delete", {
         method: "POST",
         body: JSON.stringify({ quizId }),
       });
@@ -37,7 +36,11 @@ const ConfirmDeleteQuiz: FC<ConfirmDeleteQuizProps> = ({ isOpen, onClose, quizId
       });
       router.refresh();
     } catch (error) {
-      //TODO: Show toast
+      toast({
+        title: "Something went wrong",
+        description: `The quiz with id ${quizId} was not deleted`,
+        variant: "destructive",
+      });
     }
   }
   return (

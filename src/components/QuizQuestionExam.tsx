@@ -42,8 +42,7 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
 
   async function submitHandler() {
     try {
-      //TODO: change url
-      const resp = await fetch("http://localhost:3000/api/quiz/submit", {
+      const resp = await fetch("/api/quiz/submit", {
         method: "POST",
         body: JSON.stringify({
           name: userName,
@@ -57,8 +56,6 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
         totalCorrect,
         totalQuestion,
       });
-
-      //TODO: hide question and show result
     } catch (error) {
       toast({
         title: "Something went wrong",

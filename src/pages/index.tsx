@@ -53,7 +53,7 @@ export default function Home() {
           height={450}
         />
         <div className='order-1 lg:order-2 text-primary/60 text-lg'>
-          <h2 className='font-bold text-primary text-2xl'>Dashboard</h2>
+          <h2 className='font-bold text-primary text-2xl mb-3'>Dashboard</h2>
           <p>
             Admins can create a new quiz from there dashboard. Not only that, live participation count, and success rate of quizzes are also provided
             to them. This enables them to clearly identify the quizzes with best results and assess the understanding of recipients.

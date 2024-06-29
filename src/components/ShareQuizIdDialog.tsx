@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/router";
 
 interface ShareQuizIdDialogProps {
   quizId: ObjectId | null;
@@ -14,6 +15,7 @@ interface ShareQuizIdDialogProps {
 
 const ShareQuizIdDialog: FC<ShareQuizIdDialogProps> = ({ isOpen, onClose, quizId }) => {
   const { toast } = useToast();
+
   function copyQuizId(quizId: ObjectId) {
     //todo: copy
     navigator.clipboard.writeText(getShareURL(quizId));
@@ -24,7 +26,7 @@ const ShareQuizIdDialog: FC<ShareQuizIdDialogProps> = ({ isOpen, onClose, quizId
     onClose();
   }
   function getShareURL(quizId: ObjectId) {
-    return `http://localhost:3000/takeQuiz/${quizId}`;
+    return `${window.location.origin}/takeQuiz/${quizId}`;
   }
   return (
     <Dialog open={!!quizId && isOpen} onOpenChange={onClose}>
