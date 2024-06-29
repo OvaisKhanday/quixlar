@@ -28,7 +28,7 @@ export default function Home() {
         <h4 className='text-center font-semibold text-primary/65'>The ultimate online quiz platform</h4>
 
         <div className='flex flex-col gap-6 lg:gap-12 justify-center mt-10 items-center text-center'>
-          <div className='text-primary/60  leading-7 text-lg'>
+          <div className='text-primary/60  leading-7'>
             <p>
               Introducing Quixlar, <span className='text-primary-foreground bg-primary/70 p-1 rounded-sm'>the ultimate online quiz platform</span>{" "}
               designed to make quiz creation and participation a breeze! Whether you’re an educator, trainer, or just someone who loves to test
@@ -67,7 +67,7 @@ export default function Home() {
             width={700}
             height={450}
           />
-          <div className='order-1 lg:order-2 text-primary/60 text-lg'>
+          <div className='order-1 lg:order-2 text-primary/60'>
             <h2 className='font-bold text-primary text-2xl mb-3'>Dashboard</h2>
             <p>
               Admins can create a new quiz from there dashboard. Not only that, live participation count, and success rate of quizzes are also
