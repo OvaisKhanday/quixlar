@@ -8,7 +8,7 @@ import Image from "next/image";
 interface GoogleAuthButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 const GoogleAuthButton: FC<GoogleAuthButtonProps> = ({ className }, { ...props }) => {
   return (
-    <Button className={cn("", className)} onClick={() => signIn("google", { callbackUrl: "/dashboard" })} {...props}>
+    <Button className={cn("text-lg", className)} onClick={() => signIn("google", { callbackUrl: "/dashboard" })} {...props}>
       <span className='flex flex-row gap-2 justify-center items-center p-2'>
         <Image priority src={GoogleIcon} alt='Google Icon' className='w-6 h-6' />
         Log in with Google
