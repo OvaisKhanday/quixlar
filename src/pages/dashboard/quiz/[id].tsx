@@ -80,9 +80,13 @@ export async function getServerSideProps(context: any) {
   const totalParticipants = quiz.participants.length ?? 0;
   const totalAchievableScore = totalQuestions * totalParticipants;
   const totalAchievedScore = quiz.participants.reduce((acc, p) => acc + p.totalCorrect, 0);
-  const successRate =
-    totalQuestions === 0 || totalAchievableScore || totalAchievedScore === 0 ? 0 : Math.floor((totalAchievedScore / totalAchievableScore) * 100);
-
+  let successRate = 0;
+  try {
+    successRate = Math.floor((totalAchievedScore / totalAchievableScore) * 100);
+  } catch (error) {
+    // division by zero
+    successRate = 0;
+  }
   return {
     props: {
       quiz,
