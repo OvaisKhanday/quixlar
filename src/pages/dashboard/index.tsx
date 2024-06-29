@@ -4,6 +4,7 @@ import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Layout from "./layout";
 import { QuizI } from "./newQuiz";
+import Head from "next/head";
 
 interface DashboardProps {
   session: Session | null;
@@ -15,19 +16,29 @@ interface DashboardProps {
 
 export default function Dashboard({ session, quizzes, quizzesCount, totalParticipants, successRate }: DashboardProps) {
   return (
-    <div>
-      <Layout>
-        <div className='my-8 mx-auto px-2 max-w-7xl'>
-          <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate} />
-          <div className='mt-4 md:mt-10' />
-          {quizzesCount === 0 ? (
-            <p className='text-primary/40 text-center mt-10'>You have not created any quiz yet, what are you waiting for.</p>
-          ) : (
-            <Quizzes quizzes={quizzes} />
-          )}
-        </div>
-      </Layout>
-    </div>
+    <>
+      <Head>
+        <title>Dashboard ✨</title>
+        <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+        <meta name='description' content='Quixlar, the ultimate online quiz platform!' />
+        <meta name='keywords' content='quiz, online quiz, quiz platform, Quixlar' />
+        <meta name='author' content='Ovais Ahmad Khanday' />
+      </Head>
+      <main>
+        <Layout>
+          <div className='my-8 mx-auto px-2 max-w-7xl'>
+            <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate} />
+            <div className='mt-4 md:mt-10' />
+            {quizzesCount === 0 ? (
+              <p className='text-primary/40 text-center mt-10'>You have not created any quiz yet, what are you waiting for.</p>
+            ) : (
+              <Quizzes quizzes={quizzes} />
+            )}
+          </div>
+        </Layout>
+      </main>
+    </>
   );
 }
 

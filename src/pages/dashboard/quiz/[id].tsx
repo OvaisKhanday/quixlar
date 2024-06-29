@@ -6,6 +6,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import ParticipantsTable from "@/components/ParticipantsTable";
 import QuizCards from "@/components/QuizCards";
 import QuizDetails from "@/components/QuizDetails";
+import Head from "next/head";
 
 interface QuizDetailsPageProps {
   quiz: QuizI;
@@ -14,24 +15,32 @@ interface QuizDetailsPageProps {
   totalQuestions: number;
 }
 export default function QuizDetailsPage({ quiz, totalParticipants, successRate, totalQuestions }: QuizDetailsPageProps) {
-  // quiz details
-
   return (
-    <Layout>
-      <div className='my-8 mx-auto px-2 max-w-7xl'>
-        <div className='mb-8'>
-          <QuizDetails title={quiz.title} description={quiz.description ?? ""} quizId={quiz._id?.toString() ?? ""} />
+    <>
+      <Head>
+        <title>Quiz | {quiz.title}</title>
+        <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+        <meta name='description' content='Quixlar, the ultimate online quiz platform!' />
+        <meta name='keywords' content='quiz, online quiz, quiz platform, Quixlar' />
+        <meta name='author' content='Ovais Ahmad Khanday' />
+      </Head>
+      <Layout>
+        <div className='my-8 mx-auto px-2 max-w-7xl'>
+          <div className='mb-8'>
+            <QuizDetails title={quiz.title} description={quiz.description ?? ""} quizId={quiz._id?.toString() ?? ""} />
+          </div>
+          <QuizCards successRate={successRate} totalParticipants={totalParticipants} totalQuestions={totalQuestions} />
+          <div className='w-full mt-10'>
+            {totalParticipants === 0 ? (
+              <p className='text-primary/40 text-center'>No one has yet taken this quiz, share the quiz link now.</p>
+            ) : (
+              <ParticipantsTable quiz={quiz} totalQuestions={totalQuestions} />
+            )}
+          </div>
         </div>
-        <QuizCards successRate={successRate} totalParticipants={totalParticipants} totalQuestions={totalQuestions} />
-        <div className='w-full mt-10'>
-          {totalParticipants === 0 ? (
-            <p className='text-primary/40 text-center'>No one has yet taken this quiz, share the quiz link now.</p>
-          ) : (
-            <ParticipantsTable quiz={quiz} totalQuestions={totalQuestions} />
-          )}
-        </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 

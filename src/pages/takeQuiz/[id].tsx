@@ -5,6 +5,7 @@ import AskForUserNameDialog from "@/components/AskForUserNameDialog";
 import { useState } from "react";
 import QuizQuestionExam from "@/components/QuizQuestionExam";
 import { DialogDescription } from "@/components/ui/dialog";
+import Head from "next/head";
 
 interface TakeQuiz {
   quiz: QuizI;
@@ -27,10 +28,20 @@ export default function TakeQuiz({ quiz }: TakeQuiz) {
     setShowQuiz(true);
   }
   return (
-    <div className='mt-10 '>
-      <AskForUserNameDialog isOpen={isNameDialogOpen} onName={nameHandler} />
-      {showQuiz && <QuizQuestionExam quiz={quiz} userName={userName} />}
-    </div>
+    <>
+      <Head>
+        <title>Quiz | {quiz.title}</title>
+        <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+        <meta name='description' content='Quixlar, the ultimate online quiz platform!' />
+        <meta name='keywords' content='quiz, online quiz, quiz platform, Quixlar' />
+        <meta name='author' content='Ovais Ahmad Khanday' />
+      </Head>
+      <main className='mt-10 '>
+        <AskForUserNameDialog isOpen={isNameDialogOpen} onName={nameHandler} />
+        {showQuiz && <QuizQuestionExam quiz={quiz} userName={userName} />}
+      </main>
+    </>
   );
 }
 
