@@ -16,7 +16,7 @@ const AppLogo: FC<AppLogoProps> = ({ className, ...props }) => {
         router.replace("/");
       }}
       {...props}
-      className={cn(`text-green-500 cursor-pointer text-3xl font-bold m-2 lg:mb-4`, playwriteITModerna.className, className)}
+      className={cn(`text-primary cursor-pointer text-3xl font-extrabold m-2 lg:mb-4`, playwriteITModerna.className, className)}
     >
       Quixlar
     </h1>
