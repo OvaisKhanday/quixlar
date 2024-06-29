@@ -50,6 +50,7 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
           quizId: quiz._id,
         }),
       });
+      if (resp.status >= 300) throw new Error("quiz not found");
       const { totalQuestion, totalCorrect } = await resp.json();
       setScore({
         show: true,
@@ -59,7 +60,7 @@ const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
     } catch (error) {
       toast({
         title: "Something went wrong",
-        description: "cannot save, there occurred an error while saving the user response",
+        description: "cannot save, there occurred an error while saving the user response. It may be because the admin has deleted the quiz",
         variant: "destructive",
       });
     }

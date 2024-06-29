@@ -35,10 +35,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const quizCollection = db.collection<QuizI>("quizzes");
       const quiz = await quizCollection.findOne({ _id: new ObjectId(quizId) });
-      console.log(quiz);
 
+      if (!quiz) {
+        client.close();
+        return res.status(404).json({ message: "quiz not found" });
+      }
       const totalCorrectAnswers = getTotalCorrectAnswers(quiz?.questions!, answers);
-      console.log(totalCorrectAnswers);
 
       const newParticipant: Participant = {
         name,

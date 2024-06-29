@@ -41,7 +41,6 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-
   async function getQuizzes(): Promise<QuizI[]> {
     try {
       const session = await getServerSession(context.req, context.res, authOptions);
@@ -50,6 +49,7 @@ export async function getServerSideProps(context: any) {
         method: "POST",
         body: JSON.stringify({ email: session?.user?.email }),
       });
+      if (resp.status >= 300) throw new Error("");
       const body = await resp.json();
       return body.quizzes;
     } catch (error) {

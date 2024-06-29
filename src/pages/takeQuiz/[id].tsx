@@ -42,6 +42,7 @@ export async function getServerSideProps(context: any) {
         method: "POST",
         body: JSON.stringify({ quizId }),
       });
+      if (resp.status >= 300) throw new Error("");
       const body = await resp.json();
       return body.quiz;
     } catch (error) {

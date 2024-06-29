@@ -26,10 +26,11 @@ const ConfirmDeleteQuiz: FC<ConfirmDeleteQuizProps> = ({ isOpen, onClose, quizId
   const { toast } = useToast();
   async function deleteQuiz(quizId: ObjectId) {
     try {
-      await fetch("/api/quiz/delete", {
+      const resp = await fetch("/api/quiz/delete", {
         method: "POST",
         body: JSON.stringify({ quizId }),
       });
+      if (resp.status >= 300) throw new Error("");
       toast({
         title: "Quiz got deleted",
         description: `The quiz with id ${quizId} got deleted`,

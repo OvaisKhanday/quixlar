@@ -78,7 +78,6 @@ const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestio
     setLocalQuestions([...localQuestions]);
   }
   function handleCorrectCheckbox(checked: boolean, questionId: string, optionNumber: number) {
-    console.log("called");
     const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & MCQ;
     question.correct[optionNumber - 1] = checked;
     setLocalQuestions([...localQuestions]);

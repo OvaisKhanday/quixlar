@@ -15,7 +15,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user }) {
       const client = await connectToDatabase();
-      console.log(client);
       const db = client.db("quixlardb");
       const usersCollection = db.collection("users");
       const dbUser = await usersCollection.findOne({ email: user.email });
