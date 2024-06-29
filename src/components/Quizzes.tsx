@@ -1,11 +1,12 @@
 import { QuizI } from "@/pages/dashboard/newQuiz";
-import { Cross2Icon, Share1Icon } from "@radix-ui/react-icons";
+import { ArrowRightIcon, Cross2Icon, Share1Icon } from "@radix-ui/react-icons";
 import { ObjectId } from "mongodb";
 import { FC, useState } from "react";
 import ConfirmDeleteQuiz from "./ConfirmDeleteQuiz";
 import ShareQuizIdDialog from "./ShareQuizIdDialog";
 import { Button } from "./ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import { useRouter } from "next/navigation";
 
 interface QuizzesProps {
   quizzes: QuizI[];
@@ -16,6 +17,7 @@ const Quizzes: FC<QuizzesProps> = ({ quizzes }) => {
   const [deleteQuizId, setDeleteQuizId] = useState<ObjectId | null>(null);
   const [isShareDialogOpen, setIsShareDialogOpen] = useState<boolean>(false);
   const [shareQuizId, setShareQuizId] = useState<ObjectId | null>(null);
+  const router = useRouter();
   function onDeleteHandler(id: ObjectId) {
     setDeleteQuizId(id);
     setIsDeleteDialogOpen(true);
@@ -37,6 +39,7 @@ const Quizzes: FC<QuizzesProps> = ({ quizzes }) => {
             <TableHead className='w-[100px]'>Participants</TableHead>
             <TableHead className='w-[50px]'>Share</TableHead>
             <TableHead className='w-[50px]'>Delete</TableHead>
+            <TableHead className='w-[50px]'>More</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -48,13 +51,18 @@ const Quizzes: FC<QuizzesProps> = ({ quizzes }) => {
               <TableCell className='truncate'>{quiz.title}</TableCell>
               <TableCell className='text-center '>{quiz.participants.length}</TableCell>
               <TableCell className=''>
-                <Button onClick={() => shareId(quiz._id!)}>
+                <Button variant='outline' onClick={() => shareId(quiz._id!)}>
                   <Share1Icon />
                 </Button>
               </TableCell>
               <TableCell className=''>
-                <Button variant='outline' onClick={() => onDeleteHandler(quiz._id!)}>
+                <Button variant='destructive' onClick={() => onDeleteHandler(quiz._id!)}>
                   <Cross2Icon />
+                </Button>
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => router.push(`/dashboard/quiz/${quiz._id}`)}>
+                  <ArrowRightIcon />
                 </Button>
               </TableCell>
             </TableRow>
