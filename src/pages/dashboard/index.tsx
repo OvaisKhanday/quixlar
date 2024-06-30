@@ -101,9 +101,9 @@ export async function getServerSideProps(context: any) {
       session: session,
       quizzes: quizzes,
       quizzesCount: quizzes.length,
-      totalParticipants,
-      totalQuestions,
-      successRate,
+      totalParticipants: totalParticipants ?? 0,
+      totalQuestions: totalQuestions ?? 0,
+      successRate: successRate ?? 0,
     },
   };
 }

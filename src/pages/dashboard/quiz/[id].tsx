@@ -90,9 +90,9 @@ export async function getServerSideProps(context: any) {
   return {
     props: {
       quiz,
-      totalParticipants,
-      successRate,
-      totalQuestions,
+      totalParticipants: totalParticipants ?? 0,
+      successRate: successRate ?? 0,
+      totalQuestions: totalQuestions ?? 0,
     },
   };
 }
