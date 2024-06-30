@@ -13,7 +13,7 @@ const SignInOrDashboardButton: FC<SignInOrDashboardButtonProps> = ({ ...props })
     <span {...props}>
       {session ? (
         <Link href={"/dashboard"}>
-          <Button className='text-lg'>Dashboard ✨</Button>
+          <Button className='text-md'>Dashboard ✨</Button>
         </Link>
       ) : (
         <GoogleAuthButton {...props} />

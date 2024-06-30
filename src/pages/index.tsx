@@ -50,7 +50,7 @@ export default function Home() {
             <SignInOrDashboardButton />
           </div>
           <video
-            src='/Intro-1.m4v'
+            src='/intro-1.webm'
             className='border-none shadow-xl mx-auto outline outline-8  rounded-md outline-primary/10'
             width={800}
             controls
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
         <div className='flex flex-col lg:flex-row gap-6 lg:gap-16 justify-center mt-10 items-center text-center'>
           <Image
-            src='/dashboard-1.png'
+            src='/dashboard-2.png'
             className='order-2 lg:order-1 mt-4 md:mt-10 shadow-xl rounded-lg md:-rotate-2'
             alt='dashboard screen'
             width={700}
