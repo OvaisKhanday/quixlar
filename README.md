@@ -1,40 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Quixlar - The ultimate online quiz platform
 
-## Getting Started
+## <https://quixlar.vercel.app/>
 
-First, run the development server:
+Checkout the [Video Demonstration](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/intro-1.webm), you will get to know more about it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Introducing Quixlar, the ultimate online quiz platform designed to make quiz creation and participation a breeze! Whether you’re an educator, trainer, or just someone who loves to test knowledge, Quixlar offers a seamless experience for both quiz makers and takers. With Quixlar, admins can effortlessly create engaging quizzes on any topic and share them instantly through a simple link.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Quixlar’s intuitive interface allows for quick quiz setup with customizable question types, including multiple choice, and short answer. Participants can easily access quizzes on any device, making it perfect for remote learning, virtual events, or just friendly competition.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Real-time scoring and analytics provide immediate feedback, helping users track progress and identify areas for improvement. Plus, Quixlar’s robust security ensures that all quiz data is protected. Say goodbye to tedious quiz preparation and hello to the future of online quizzing with Quixlar. Join our community of quiz enthusiasts and start creating, sharing, and taking quizzes today!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![Hero](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/hero-1.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Tech used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Next.js
+- Tailwind CSS
+- NextAuth
+- MongoDB
+- OAuth
 
-## Learn More
+### Features
 
-To learn more about Next.js, take a look at the following resources:
+- Create account via Google
+- Create quiz, share link, and watch the response
+- Fluid Dashboard will latest data
+- Create and share quiz
+- List of all participants and their respective scores
+- Overall success rate of your quizzes and of individual quiz as well
+- and much more
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Dashboard](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/dashboard-1.png)
 
-## Deploy on Vercel
+![Dashboard](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/dashboard-2.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Create Quiz
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Create Quiz](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/new-quiz-1.png)
+
+### Take Quiz
+
+![Take Quiz](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/take-quiz-1.png)
