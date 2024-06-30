@@ -28,7 +28,7 @@ export default function Dashboard({ session, quizzes, quizzesCount, totalPartici
       <main>
         <Layout>
           <div className='my-8 mx-auto px-2 max-w-7xl'>
-            <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate} />
+            <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate ?? 0} />
             <div className='mt-4 md:mt-10' />
             {quizzesCount === 0 ? (
               <p className='text-primary/40 text-center mt-10'>You have not created any quiz yet, what are you waiting for.</p>

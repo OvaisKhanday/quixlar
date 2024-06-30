@@ -37,8 +37,8 @@ const QuizCards: FC<QuizCardsProps> = ({ totalQuestions, totalParticipants, succ
           <CardDescription>Percentage of questions correctly answered by the participants</CardDescription>
         </CardHeader>
         <CardContent className='text-center flex flex-row items-center justify-center gap-2'>
-          <p className='text-primary/70'>{`${successRate}%`}</p>
-          <Progress value={successRate} className='h-4' />
+          <p className='text-primary/70'>{`${successRate ?? 0}%`}</p>
+          <Progress value={successRate ?? 0} className='h-4' />
         </CardContent>
       </Card>
     </div>
