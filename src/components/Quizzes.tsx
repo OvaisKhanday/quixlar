@@ -1,4 +1,3 @@
-import { QuizI } from "@/pages/dashboard/newQuiz";
 import { ArrowRightIcon, Cross2Icon, Share1Icon } from "@radix-ui/react-icons";
 import { ObjectId } from "mongodb";
 import { FC, useState } from "react";
@@ -7,6 +6,7 @@ import ShareQuizIdDialog from "./ShareQuizIdDialog";
 import { Button } from "./ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { useRouter } from "next/navigation";
+import { QuizI } from "@/lib/types";
 
 interface QuizzesProps {
   quizzes: QuizI[];

@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { QuestionTypes } from "./QuestionPage";
+import { QuestionTypes } from "@/lib/types";
 
 interface ChooseQuestionTypeDialogProps {
   isOpen: boolean;

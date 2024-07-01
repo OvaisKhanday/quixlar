@@ -1,7 +1,7 @@
 import { AllHTMLAttributes, FC } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Progress } from "./ui/progress";
-import { QuizI } from "@/pages/dashboard/newQuiz";
+import { QuizI } from "@/lib/types";
 
 interface ParticipantsTableProps extends AllHTMLAttributes<HTMLDivElement> {
   quiz: QuizI;

@@ -1,7 +1,5 @@
 import { AllHTMLAttributes, FC } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 interface QuizCardsProps extends AllHTMLAttributes<HTMLDivElement> {
   totalQuestions: number;

@@ -1,9 +1,9 @@
-import { FC, HTMLAttributes } from "react";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { signIn } from "next-auth/react";
-import GoogleIcon from "../../public/icons8-google.svg";
 import Image from "next/image";
+import { FC } from "react";
+import GoogleIcon from "../../public/icons8-google.svg";
+import { Button } from "./ui/button";
 
 interface GoogleAuthButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 const GoogleAuthButton: FC<GoogleAuthButtonProps> = ({ className }, { ...props }) => {

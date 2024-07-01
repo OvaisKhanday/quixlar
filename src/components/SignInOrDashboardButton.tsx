@@ -1,9 +1,8 @@
 import { useSession } from "next-auth/react";
-import { Span } from "next/dist/trace";
 import Link from "next/link";
-import { ButtonHTMLAttributes, FC, HTMLAttributes } from "react";
-import { Button } from "./ui/button";
+import { FC, HTMLAttributes } from "react";
 import GoogleAuthButton from "./GoogleAuthButton";
+import { Button } from "./ui/button";
 
 interface SignInOrDashboardButtonProps extends HTMLAttributes<HTMLSpanElement> {}
 
