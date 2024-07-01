@@ -1,9 +1,7 @@
-import { QuestionType } from "@/components/QuestionPage";
-import { Answers } from "@/components/QuizQuestionExam";
 import { connectToDatabase } from "@/db";
+import { Answers, Participant, QuestionType, QuizI } from "@/lib/types";
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Participant, QuizI } from "../../dashboard/newQuiz";
 
 function getTotalCorrectAnswers(questions: QuestionType[], answers: Answers): number {
   let totalCorrect = 0;

@@ -1,18 +1,12 @@
 import { Collection, Document, ObjectId } from "mongodb";
 
-type Answer = boolean[] | string;
-
-interface Participant extends Document {
-  name: string;
-  answers: Answer[];
-}
-
 interface UserI extends Collection {
   name: string;
   email: string;
   image?: string;
   quizzes: ObjectId[];
 }
+
 interface QuizI {
   _id?: ObjectId;
   title: string;
@@ -21,6 +15,7 @@ interface QuizI {
   timestamp: Date;
   participants: Participant[];
 }
+
 interface Participant {
   _id?: ObjectId;
   name: string;
@@ -28,6 +23,9 @@ interface Participant {
   totalCorrect: number;
   timestamp: Date;
 }
+
+type QuestionTypes = "mcq" | "descriptive";
+
 type QuestionType = {
   type: QuestionTypes;
   id: string;
@@ -44,8 +42,8 @@ type DescriptiveType = {
   type: "descriptive";
   correct: string;
 };
-type QuestionTypes = "mcq" | "descriptive";
 
+type Answer = boolean[] | string;
 type Answers = {
   [questionId: string]: Answer;
 };

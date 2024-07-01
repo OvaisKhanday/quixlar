@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/db";
-import { QuizI } from "@/pages/dashboard/newQuiz";
+import { QuizI } from "@/lib/types";
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 

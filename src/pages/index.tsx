@@ -1,7 +1,6 @@
 import AppLogo from "@/components/AppLogo";
 import SignInOrDashboardButton from "@/components/SignInOrDashboardButton";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
 import Head from "next/head";
 // import { Inter } from "next/font/google";
 import Image from "next/image";
