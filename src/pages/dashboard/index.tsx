@@ -2,9 +2,11 @@ import DashboardCards from "@/components/DashboardCards";
 import Quizzes from "@/components/Quizzes";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
-import Layout from "./layout";
 import { QuizI } from "./newQuiz";
 import Head from "next/head";
+import { NextPageWithLayout } from "../_app";
+import { NextPage } from "next";
+import DashboardLayout from "@/components/DashboardLayout";
 
 interface DashboardProps {
   session: Session | null;
@@ -14,7 +16,7 @@ interface DashboardProps {
   successRate: number;
 }
 
-export default function Dashboard({ session, quizzes, quizzesCount, totalParticipants, successRate }: DashboardProps) {
+const Dashboard: NextPageWithLayout<DashboardProps> = ({ session, quizzes, quizzesCount, totalParticipants, successRate }) => {
   return (
     <>
       <Head>
@@ -26,21 +28,25 @@ export default function Dashboard({ session, quizzes, quizzesCount, totalPartici
         <meta name='author' content='Ovais Ahmad Khanday' />
       </Head>
       <main>
-        <Layout>
-          <div className='my-8 mx-auto px-2 max-w-7xl'>
-            <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate ?? 0} />
-            <div className='mt-4 md:mt-10' />
-            {quizzesCount === 0 ? (
-              <p className='text-primary/40 text-center mt-10'>You have not created any quiz yet, what are you waiting for.</p>
-            ) : (
-              <Quizzes quizzes={quizzes} />
-            )}
-          </div>
-        </Layout>
+        <div className='my-8 mx-auto px-2 max-w-7xl'>
+          <DashboardCards quizzesCount={quizzesCount} totalParticipants={totalParticipants} successRate={successRate ?? 0} />
+          <div className='mt-4 md:mt-10' />
+          {quizzesCount === 0 ? (
+            <p className='text-primary/40 text-center mt-10'>You have not created any quiz yet, what are you waiting for.</p>
+          ) : (
+            <Quizzes quizzes={quizzes} />
+          )}
+        </div>
       </main>
     </>
   );
-}
+};
+
+export default Dashboard;
+
+Dashboard.getLayout = function getLayout(page: React.ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
