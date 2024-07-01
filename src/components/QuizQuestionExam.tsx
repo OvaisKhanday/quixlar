@@ -115,7 +115,7 @@ function Score({ totalCorrect, totalQuestion }: { totalCorrect: number; totalQue
   return (
     <div className=' mx-auto p-8 rounded-full outline shadow-md text-center h-36 w-36 flex flex-col justify-center items-center'>
       <p className='text-xl'>
-        <span className='text-2xl font-bold'>{totalCorrect.toPrecision(2)}</span>
+        <span className='text-2xl font-bold'>{totalCorrect}</span>
         {" / "}
         <span>{totalQuestion}</span>
       </p>
