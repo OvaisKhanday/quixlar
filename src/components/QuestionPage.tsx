@@ -5,29 +5,12 @@ import ChooseQuestionTypeDialog from "./ChooseQuestionTypeDialog";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Input, InputProps } from "./ui/input";
+import { DescriptiveType, MCQType, QuestionType, QuestionTypes } from "@/lib/types";
 
 interface QuestionProps {
   questions: QuestionType[];
   setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
 }
-
-export type QuestionType = {
-  type: QuestionTypes;
-  id: string;
-  question: string;
-} & (MCQ | Descriptive);
-
-export type MCQ = {
-  type: "mcq";
-  options: string[];
-  correct: boolean[];
-};
-
-export type Descriptive = {
-  type: "descriptive";
-  correct: string;
-};
-export type QuestionTypes = "mcq" | "descriptive";
 
 const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestions: setLocalQuestions }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -67,18 +50,18 @@ const QuestionPage: FC<QuestionProps> = ({ questions: localQuestions, setQuestio
   }
 
   function updateOptionText(questionId: string, newText: string, optionNumber: number) {
-    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & MCQ;
+    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & MCQType;
     question.options[optionNumber - 1] = newText;
     setLocalQuestions([...localQuestions]);
   }
 
   function updateCorrectAnswer(questionId: string, newText: string) {
-    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & Descriptive;
+    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & DescriptiveType;
     question.correct = newText;
     setLocalQuestions([...localQuestions]);
   }
   function handleCorrectCheckbox(checked: boolean, questionId: string, optionNumber: number) {
-    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & MCQ;
+    const question = localQuestions.find((q) => q.id === questionId)! as QuestionType & MCQType;
     question.correct[optionNumber - 1] = checked;
     setLocalQuestions([...localQuestions]);
   }
@@ -118,7 +101,7 @@ function MCQ({
   updateQuestionText,
   updateOptionText,
 }: {
-  question: QuestionType & MCQ;
+  question: QuestionType & MCQType;
   onDelete: (_: string) => void;
   updateQuestionText: (_id: string, _text: string) => void;
   updateOptionText: (_id: string, _text: string, _optionNumber: number) => void;
@@ -154,7 +137,7 @@ function MCQOption({
 }: {
   option: string;
   optionNumber: number;
-  question: QuestionType & MCQ;
+  question: QuestionType & MCQType;
   changeChecked: (_checked: boolean, _questionId: string, _optionNumber: number) => void;
   updateOptionText: (_id: string, _text: string, _optionNumber: number) => void;
 }) {
@@ -179,7 +162,7 @@ function Descriptive({
   updateQuestionText,
   updateCorrectAnswer,
 }: {
-  question: QuestionType & Descriptive;
+  question: QuestionType & DescriptiveType;
   onDelete: (_: string) => void;
   updateQuestionText: (_id: string, _text: string) => void;
   updateCorrectAnswer: (_id: string, _text: string) => void;

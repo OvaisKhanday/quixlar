@@ -1,5 +1,4 @@
 import { getServerSession } from "next-auth";
-import { QuizI } from "../newQuiz";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 import ParticipantsTable from "@/components/ParticipantsTable";
@@ -8,6 +7,7 @@ import QuizDetails from "@/components/QuizDetails";
 import Head from "next/head";
 import DashboardLayout from "@/components/DashboardLayout";
 import { NextPageWithLayout } from "@/pages/_app";
+import { QuizI } from "@/lib/types";
 
 interface QuizDetailsPageProps {
   quiz: QuizI;

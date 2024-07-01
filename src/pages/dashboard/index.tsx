@@ -1,12 +1,11 @@
 import DashboardCards from "@/components/DashboardCards";
+import DashboardLayout from "@/components/DashboardLayout";
 import Quizzes from "@/components/Quizzes";
+import { QuizI } from "@/lib/types";
 import { getServerSession, Session } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
-import { QuizI } from "./newQuiz";
 import Head from "next/head";
 import { NextPageWithLayout } from "../_app";
-import { NextPage } from "next";
-import DashboardLayout from "@/components/DashboardLayout";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 interface DashboardProps {
   session: Session | null;

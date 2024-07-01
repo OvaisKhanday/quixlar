@@ -1,27 +1,17 @@
-import { QuizI } from "@/pages/dashboard/newQuiz";
-import { FC, useEffect, useState } from "react";
-import { Descriptive, MCQ, QuestionType, QuestionTypes } from "./QuestionPage";
-import { Checkbox } from "./ui/checkbox";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Participant } from "../pages/dashboard/newQuiz";
-import { Description } from "@radix-ui/react-dialog";
 import { useToast } from "@/components/ui/use-toast";
+import { Answers, DescriptiveType, MCQType, QuestionType, QuizI } from "@/lib/types";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Card, CardContent } from "./ui/card";
-import { Progress } from "./ui/progress";
+import { FC, useState } from "react";
 import AppLogo from "./AppLogo";
+import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
+import { Input } from "./ui/input";
+import { Progress } from "./ui/progress";
 
 interface QuizQuestionExamProps {
   quiz: QuizI;
   userName: string;
 }
-
-export type Answers = {
-  [questionId: string]: boolean[] | string;
-};
 
 const QuizQuestionExam: FC<QuizQuestionExamProps> = ({ quiz, userName }) => {
   const { toast } = useToast();
@@ -140,7 +130,7 @@ function TakeMCQ({
   answer,
   changeChecked,
 }: {
-  question: QuestionType & MCQ;
+  question: QuestionType & MCQType;
   answer: boolean[];
   changeChecked: (_questionId: string, _idx: number, _checked: boolean) => void;
 }) {
@@ -167,7 +157,7 @@ function TakeDescriptive({
   answer,
   changeAnswerText,
 }: {
-  question: QuestionType & Descriptive;
+  question: QuestionType & DescriptiveType;
   answer: string;
   changeAnswerText: (_questionId: string, _newText: string) => void;
 }) {
