@@ -2,7 +2,7 @@
 
 ## <https://quixlar.vercel.app/>
 
-Checkout the [Video Demonstration](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/intro-1.webm), you will get to know more about it.
+Checkout the [Video Demonstration](https://youtu.be/hTJgP6wV5pY), you will get to know more about it.
 
 Introducing Quixlar, the ultimate online quiz platform designed to make quiz creation and participation a breeze! Whether you’re an educator, trainer, or just someone who loves to test knowledge, Quixlar offers a seamless experience for both quiz makers and takers. With Quixlar, admins can effortlessly create engaging quizzes on any topic and share them instantly through a simple link.
 
