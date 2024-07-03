@@ -89,7 +89,7 @@ export default function Home() {
               <a href='https://linkedin.com/in/ovaiskhanday' target='_blank'>
                 <LinkedInLogoIcon className='w-4 h-4' />
               </a>
-              <a href='https://x.com/ovaiskhanday/' target='_blank'>
+              <a href='https://twitter.com/ovaiskhanday/' target='_blank'>
                 <TwitterLogoIcon className='w-4 h-4' />
               </a>
               <a href='https://github.com/ovaiskhanday/quixlar' target='_blank'>
