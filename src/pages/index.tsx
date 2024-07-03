@@ -1,6 +1,7 @@
 import AppLogo from "@/components/AppLogo";
 import SignInOrDashboardButton from "@/components/SignInOrDashboardButton";
 import { Button } from "@/components/ui/button";
+import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Head from "next/head";
 // import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -76,15 +77,26 @@ export default function Home() {
         </div>
         <footer className='my-2 mt-8 lg:mt-12'>
           <hr />
-          <p className='text-primary/70 text-sm text-center'>
-            Designed and Developed by{" "}
-            <a href='https://khandayovais.co' target='_blank'>
-              <Button variant={"link"} className='underline'>
+          <div className='flex justify-between gap-y-2 flex-col md:flex-row items-center mt-2'>
+            <p className='text-primary/70 text-xs text-center'>
+              Developed by{" "}
+              <a href='https://khandayovais.co' target='_blank' className='font-semibold hover:underline'>
                 Ovais Ahmad Khanday
-              </Button>
-            </a>{" "}
-            with ❤️
-          </p>
+              </a>{" "}
+              with ❤️
+            </p>
+            <div className='flex gap-2'>
+              <a href='https://linkedin.com/in/ovaiskhanday' target='_blank'>
+                <LinkedInLogoIcon className='w-4 h-4' />
+              </a>
+              <a href='https://x.com/ovaiskhanday/' target='_blank'>
+                <TwitterLogoIcon className='w-4 h-4' />
+              </a>
+              <a href='https://github.com/ovaiskhanday/quixlar' target='_blank'>
+                <GitHubLogoIcon className='w-4 h-4' />
+              </a>
+            </div>
+          </div>
         </footer>
       </main>
     </>
