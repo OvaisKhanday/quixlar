@@ -38,7 +38,7 @@ Real-time scoring and analytics provide immediate feedback, helping users track 
 
 ### Create Quiz
 
-![Create Quiz](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/new-quiz-1.png)
+![Create Quiz](https://raw.githubusercontent.com/OvaisKhanday/Markdowns/main/quixlar/create-quiz-1.png)
 
 ### Take Quiz
 
