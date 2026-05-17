@@ -33,7 +33,7 @@ export function Features() {
           <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
             Everything you need.
             <br />
-            <span className="text-gray-400">Nothing you don't.</span>
+            <span className="text-gray-400">Nothing you don&apos;t.</span>
           </h2>
         </motion.div>
 

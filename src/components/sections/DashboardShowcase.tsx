@@ -35,7 +35,7 @@ export function DashboardShowcase() {
                 <div className="text-blue-600 font-light text-lg">✓</div>
                 <div>
                   <h4 className="font-normal text-gray-900 mb-1">Performance Insights</h4>
-                  <p className="text-gray-500 font-light text-sm">Understand what works and what doesn't</p>
+                  <p className="text-gray-500 font-light text-sm">Understand what works and what doesn&apos;t</p>
                 </div>
               </div>
               <div className="flex gap-4">
